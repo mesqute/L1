@@ -18,22 +18,15 @@ type Man struct {
 }
 
 func (m *Man) Cook(f Food) {
-	fmt.Println("Мужик готовит")
+	fmt.Print("Человек начал готовить, ")
 	f.Eat()
 }
 
-type Meat struct {
+type Rice struct {
 }
 
-func (m *Meat) Eat() {
-	fmt.Println("Мужик съел мясо")
-}
-
-type Beer struct {
-}
-
-func (b *Beer) Drink() {
-	fmt.Println("Мужик выпил пиво")
+func (m *Rice) Eat() {
+	fmt.Println("а потом съел миску риса")
 }
 
 type DrinksAdapter struct {
@@ -41,21 +34,29 @@ type DrinksAdapter struct {
 }
 
 func (da *DrinksAdapter) Eat() {
-	fmt.Println("Мужик разгрыз бутылку")
+	fmt.Print("налил в кружку, ")
 	da.DrinksType.Drink()
 }
 
+type Tea struct {
+}
+
+func (b *Tea) Drink() {
+	fmt.Println("а потом и выпил чай.")
+}
+
 func main() {
-	// инициализируем структуру "мужик"
+
+	// инициализируем структуру "человек"
 	man := new(Man)
 
-	// если мужик захочет мяса, то он его просто приготовит и съест
-	meat := new(Meat)
-	man.Cook(meat)
+	// если человек захочет рис, то он его просто приготовит и съест
+	rice := new(Rice)
+	man.Cook(rice)
 
-	// если мужик захочет пива, то он не сможет его съесть,
-	// поэтому был добавлен адаптер, в котором мужик разгрызает бутылку, а потом пьет
-	beer := new(Beer)
-	adapter := &DrinksAdapter{DrinksType: beer}
+	// если человек захочет чай, то он не сможет его съесть,
+	// поэтому был добавлен адаптер, в котором человек наливает чай, а потом уже пьет
+	tea := new(Tea)
+	adapter := &DrinksAdapter{DrinksType: tea}
 	man.Cook(adapter)
 }

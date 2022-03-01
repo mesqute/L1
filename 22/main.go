@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/big"
+)
 
 /*Задание:
 Разработать программу, которая перемножает, делит,
@@ -8,17 +11,39 @@ import "fmt"
 */
 
 func main() {
-	// при значениях меньших чем 2^63
 
-	pow := 60
-	var a int64 = 1 << pow
-	var b int64 = 2 << pow
+	// вычисление с применением math/big
+	Big()
+}
+
+func Big() {
+	fmt.Println("Big")
+	// объявляем переменные и их значение
+	a := new(big.Int)
+	a.SetString("180000000000000000000000000000000", 10) // 18 * 10^30
+	b := new(big.Int)
+	b.SetString("56000000000000000000000000000000000", 10) // 56 * 10^32
 	fmt.Println("a:", a)
 	fmt.Println("b:", b)
-	fmt.Println("a + b:", a+b)
-	fmt.Println("b - a:", b-a)
-	fmt.Println("a * b:", a*b)
-	fmt.Println("b / a:", b/a)
 
-	// при значениях 2^64 и больше
+	// сложение
+	sum := new(big.Int)
+	sum.Add(a, b)
+	fmt.Println("a + b:", sum)
+
+	// вычитание
+	dif := new(big.Int)
+	dif.Sub(b, a)
+	fmt.Println("b - a:", dif)
+
+	// умножение
+	mult := new(big.Int)
+	mult.Mul(a, b)
+	fmt.Println("a * b:", mult)
+
+	// деление
+	div := new(big.Int)
+	div.Div(b, a)
+	fmt.Println("b / a:", div)
+
 }
