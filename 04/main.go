@@ -21,7 +21,7 @@ import (
 func main() {
 	var num int
 
-	// счиываем из stdin кол-во необходимых работяг
+	// считываем из stdin кол-во необходимых работяг
 	fmt.Print("Введите кол-во работяг: ")
 	_, err := fmt.Scan(&num)
 	if err != nil {
@@ -35,7 +35,7 @@ func main() {
 	// инициализируем контекст с функцией отмены
 	ctx, cancel := context.WithCancel(context.Background())
 
-	// инициалииуем канал для контроля окончания работы работяг
+	// инициализируем канал для контроля окончания работы работяг
 	doneChan := make(chan bool, num)
 	defer close(doneChan)
 
@@ -69,7 +69,7 @@ loop:
 	os.Exit(0)
 }
 
-// Worker считывает данные из канаа и выводит их в stdout
+// Worker считывает данные из канала и выводит их в stdout
 func Worker(mChan <-chan int, doneChan chan<- bool, ctx context.Context, id int) {
 	// используем лейблы для назначения циклу названия
 loop1:

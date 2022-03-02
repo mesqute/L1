@@ -16,10 +16,11 @@ type Point struct {
 }
 
 func main() {
-
+	// создаем две точки
 	point1 := NewPoint(0, 0)
 	point2 := NewPoint(1, -5)
 
+	// вычисляем расстояние между ними и выводим его в stdout
 	fmt.Printf("%.2f", PointDist(point1, point2))
 }
 
